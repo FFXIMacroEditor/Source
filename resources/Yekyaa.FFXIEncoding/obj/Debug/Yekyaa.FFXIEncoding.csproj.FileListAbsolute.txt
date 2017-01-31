@@ -1,0 +1,15 @@
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\resources\Yekyaa.FFXIEncoding\obj\Debug\Yekyaa.FFXIEncoding.csproj.GenerateResource.Cache
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\resources\Yekyaa.FFXIEncoding\bin\Debug\Yekyaa.FFXIEncoding.dll
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\resources\Yekyaa.FFXIEncoding\bin\Debug\Yekyaa.FFXIEncoding.pdb
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\resources\Yekyaa.FFXIEncoding\obj\Debug\Yekyaa.FFXIEncoding.SplashScreen.resources
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\resources\Yekyaa.FFXIEncoding\obj\Debug\Yekyaa.FFXIEncoding.FFXIEncodingResources.resources
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\resources\Yekyaa.FFXIEncoding\obj\Debug\Yekyaa.FFXIEncoding.dll
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\resources\Yekyaa.FFXIEncoding\obj\Debug\Yekyaa.FFXIEncoding.pdb
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\Source\resources\Yekyaa.FFXIEncoding\bin\Debug\Yekyaa.FFXIEncoding.dll
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\Source\resources\Yekyaa.FFXIEncoding\bin\Debug\Yekyaa.FFXIEncoding.pdb
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\Source\resources\Yekyaa.FFXIEncoding\obj\Debug\Yekyaa.FFXIEncoding.csprojResolveAssemblyReference.cache
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\Source\resources\Yekyaa.FFXIEncoding\obj\Debug\Yekyaa.FFXIEncoding.SplashScreen.resources
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\Source\resources\Yekyaa.FFXIEncoding\obj\Debug\Yekyaa.FFXIEncoding.FFXIEncodingResources.resources
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\Source\resources\Yekyaa.FFXIEncoding\obj\Debug\Yekyaa.FFXIEncoding.csproj.GenerateResource.Cache
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\Source\resources\Yekyaa.FFXIEncoding\obj\Debug\Yekyaa.FFXIEncoding.dll
+E:\Users\User\Documents\Visual Studio 2015\Projects\Macro Editor\Macro Editor\Source\resources\Yekyaa.FFXIEncoding\obj\Debug\Yekyaa.FFXIEncoding.pdb
