@@ -1,8 +1,9 @@
 ﻿Public Class Assessment
     Dim output As New Panel
     Dim output_row As New Dictionary(Of Integer, GroupBox)
-    Dim iTypes As String() = {"Match Found", "Title Length", "Line Length", "Invalid characters", "Starts with '//'", "Doesn't start with '/'", "Old Style /wait"}
-    Dim itypes_explanation As String() = {"", "Macro titles can only be 8 characters.", "Macro line length, after auto-translate conversion, can only be 60 characters.", "Line contains invalid, likely invisible, characters try retyping the line. This is usually the result of a corrupt clipboard paste.", "If you're trying to execute a windower command, try /console [command] rather than //[command].", "Line doesn't start with '/'", "It may be useful to free up a line and append <waitX> to the previous line, rather than /wait X."}
+    Dim iTypes As String() = {"Match Found", "Title Length", "Line Length", "Invalid characters", "Starts with '//'", "Doesn't start with '/'", "Old Style /wait", "Item Auto-Translate"}
+    Dim itypes_explanation As String() = {"", "Macro titles can only be 8 characters.", "Macro line length, after auto-translate conversion, can only be 60 characters.", "Line contains invalid, likely invisible, characters try retyping the line. This is usually the result of a corrupt clipboard paste.", "If you're trying to execute a windower command, try /console [command] rather than //[command].", "Line doesn't start with '/'",
+        "It may be useful to free up a line and append <waitX> to the previous line, rather than /wait X.", "Autotranslate phrases for items are not deciphered, in part due to the sheer number of items. FFXI Macro Editor interacts with these macro lines fine."}
     Private Sub Assessment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.AutoScroll = True
     End Sub

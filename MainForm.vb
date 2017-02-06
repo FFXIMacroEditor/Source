@@ -681,6 +681,8 @@ Public Class MainForm
                             cautions(cautions.Count) = {b, r, m, l, 5, line}
                         ElseIf line.StartsWith("/wait") Then
                             cautions(cautions.Count) = {b, r, m, l, 6, line}
+                        ElseIf line.contains("|UnknownItem>") Then
+                            cautions(cautions.Count) = {b, r, m, l, 7, line}
                         End If
                     Next
                 Next

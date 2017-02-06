@@ -143,7 +143,11 @@ Partial Class MainForm
         For Each c As Char In phrase
             DecodedPhrase &= Convert.ToString(Convert.ToInt32(c), 16).PadLeft(2, "0")
         Next
-        Return "<" & DecodedPhrase & "|" & ATObject.Item(DecodedPhrase.ToUpper()) & ">"
+        Try
+            Return "<" & DecodedPhrase & "|" & ATObject.Item(DecodedPhrase.ToUpper()) & ">"
+        Catch
+            Return "<" & DecodedPhrase & "|" & "UnknownItem" & ">"
+        End Try
     End Function
 
     Function ATEncode(phrase As String) As String ' For Writing to File
