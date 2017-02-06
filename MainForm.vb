@@ -466,11 +466,11 @@ Public Class MainForm
         For r = 0 To 9
             cx1(r) = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""}
             For m = 0 To 19
-                cx1(r)(m) = String.Join(Chr(10), MacroContainer(cbook, r, m))
+                cx1(r)(m) = String.Join(Chr(10), MacroContainer(cbook, r, m)).TrimEnd()
             Next
             cx2(r + 1) = String.Join(Chr(10) & Chr(10) & "Macro:" & Chr(10), cx1(r))
         Next
-        cx2(11) = "EndBook (Please do not remove empty lines as they're part of the sharing format)"
+        cx2(11) = "EndBook (Please do not remove empty lines as they're part of the sharing format). If you experience problems pasting, please make sure to download an up to date version."
         Clipboard.SetText(String.Join(Chr(10) & Chr(10) & "Row, Macro:" & Chr(10), cx2))
         Rows(xRow).PerformClick()
     End Sub
@@ -493,6 +493,7 @@ Public Class MainForm
             For r = 0 To 9
                 Dim cx1 As String() = Strings.Split(cx(r), Chr(10) & Chr(10) & "Macro:" & Chr(10))
                 For m = 0 To 19
+                    MacroContainer(xBook, r, m) = {"", "", "", "", "", "", ""}
                     Dim cx2 As String() = cx1(m).Split((Chr(10)))
                     For l = 0 To Math.Min(cx2.Length - 1, 6)
                         MacroContainer(cbook, r, m)(l) = cx2(l)
@@ -534,7 +535,7 @@ Public Class MainForm
 
     Private Sub MenuMacro_CopyClipboard_Click(sender As Object, e As EventArgs) Handles MenuMacro_CopyClipboard.Click
         Dim x = (sender.GetCurrentParent()).SourceControl.tag
-        Dim c As String = "Type: Macro" & Chr(10) & String.Join(Chr(10), MacroContainer(xBook, xRow, x)) & Chr(10) & "EndMacro (Please do not remove empty lines as they're part of the sharing format)"
+        Dim c As String = "Type: Macro" & Chr(10) & String.Join(Chr(10), MacroContainer(xBook, xRow, x)).TrimEnd() & Chr(10) & "EndMacro (Please do not remove empty lines as they're part of the sharing format). If you experience problems pasting, please make sure to download an up to date version."
         Clipboard.SetText(c)
     End Sub
 
@@ -624,9 +625,9 @@ Public Class MainForm
         Dim cx1 As String() = New String(21) {}
         cx1(0) = "Type: Row"
         For m = 0 To 19
-            cx1(m + 1) = String.Join(Chr(10), MacroContainer(xBook, x, m))
+            cx1(m + 1) = String.Join(Chr(10), MacroContainer(xBook, x, m)).TrimEnd()
         Next
-        cx1(21) = "EndRow (Please do not remove empty lines as they're part of the sharing format)"
+        cx1(21) = "EndRow (Please do not remove empty lines as they're part of the sharing format). If you experience problems pasting, please make sure to download an up to date version."
         Clipboard.SetText(String.Join(Chr(10) & Chr(10) & "Macro:" & Chr(10), cx1))
     End Sub
 
@@ -641,7 +642,8 @@ Public Class MainForm
         Array.Resize(cx1, cx1.Length - 1)
         For m = 0 To 19
             Dim cx2 As String() = cx1(m).Split((Chr(10)))
-            For l = 0 To 6
+            MacroContainer(xBook, x, m) = {"", "", "", "", "", "", ""}
+            For l = 0 To Math.Min(cx2.Length - 1, 6)
                 Try
                     MacroContainer(xBook, x, m)(l) = cx2(l)
                 Catch
@@ -717,7 +719,7 @@ Public Class MainForm
                 cx1(m + 1) = String.Join(Chr(10), MacroContainer(xBook, xRow, m))
             Next
         End If
-        cx1(11) = "EndSide (Please do not remove empty lines as they're part of the sharing format)"
+        cx1(11) = "EndSide (Please do not remove empty lines as they're part of the sharing format). If you experience problems pasting, please make sure to download an up to date version."
         Clipboard.SetText(String.Join(Chr(10) & Chr(10) & "Macro:" & Chr(10), cx1))
     End Sub
 

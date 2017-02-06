@@ -82,6 +82,7 @@ Partial Class MainForm
                                                               End Function)
     End Function
 
+
     Public Function WriteFile(Book As Integer, Row As Integer) As Boolean
         Dim fname As String = macropath & "\mcr" & KillZero(Book, Row) & ".dat"
         Dim b() As Byte
