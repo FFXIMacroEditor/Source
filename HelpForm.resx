@@ -138,17 +138,21 @@ Because Final Fantasy XI's macro files are protected, this program must be run a
 
 @F2@ works like @TAB@ in game and opens an auto-translate menu based on text entered.
 
-@TAB@ cycles through macro title and macro lines.
-
 You can right click macro buttons, row buttons or the Book selection box to pull up related tasks.
 
 @Revert@ from any of these buttons restores the macro as loaded from the files (File &gt;&gt; Open). Saving files will update the revert cache to the point of saving.
 
 ##Shortcuts
 
+@TAB@ or @Enter@ cycles through macro title and macro lines.
+
+@Escape@ takes you to the title line for the macro
+
 @Control + Left@ / @Right@ navigates the control pallette of the macro row.
 
 @Control + 1-9,0@ takes you to the corresponding lefthand  macro in the current row. 0 takes you to the 10th macro of that row.
+
+@Control + Enter@ cycles forward through macros. @Control + Shift + Enter@ Cycles backward.
 
 Likewise for @Alternate@ and the righthand side.
 

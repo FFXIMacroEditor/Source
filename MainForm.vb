@@ -68,26 +68,32 @@ Public Class MainForm
     Private Sub Form1_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles MyBase.KeyDown
         If Contents.Enabled = False Then Exit Sub
         If e.Control Then
-            If e.KeyCode = 37 Then 'control+left
+            If e.KeyCode = Keys.Left Then 'control+left
                 If xMacro >= 10 Then xMacro = -1
                 Ctrls(Math.Max(0, xMacro - 1)).PerformClick()
                 e.SuppressKeyPress = True
-            ElseIf e.KeyCode = 39 Then 'control+right
+            ElseIf e.KeyCode = Keys.Right Then 'control+right
                 If xMacro >= 10 Then xMacro = -1
                 Ctrls(Math.Min(9, xMacro + 1)).PerformClick()
                 e.SuppressKeyPress = True
-            ElseIf (e.Control) And e.KeyCode = 38 Then
+            ElseIf e.KeyCode = 38 Then
                 Rows(Math.Max(xRow - 1, 0)).PerformClick()
                 e.SuppressKeyPress = True
-            ElseIf (e.Control) And e.KeyCode = 40 Then
+            ElseIf e.KeyCode = 40 Then
                 Rows(Math.Min(xRow + 1, 9)).PerformClick()
                 e.SuppressKeyPress = True
-            ElseIf e.Control And e.KeyCode >= 48 And e.KeyCode <= 57 Then
+            ElseIf e.KeyCode >= 48 And e.KeyCode <= 57 Then
                 If e.KeyCode > 48 Then
                     Ctrls(e.KeyCode - 49).PerformClick()
                 ElseIf e.KeyCode = 48 Then
                     Ctrls(9).PerformClick()
                 End If
+                e.SuppressKeyPress = True
+            ElseIf e.Shift And e.keycode = Keys.Tab Then
+                Ctrls(Math.Max(0, xMacro - 1)).PerformClick()
+                e.SuppressKeyPress = True
+            ElseIf e.KeyCode = Keys.Tab Then
+                Ctrls(Math.Min(19, xMacro + 1)).PerformClick()
                 e.SuppressKeyPress = True
             End If
         ElseIf e.Alt Then
@@ -285,8 +291,31 @@ Public Class MainForm
 
     Private Sub lines_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
         If e.KeyCode = Keys.F2 And CurrentLine > 0 Then
+            e.Handled = True
             MenuText_Opening(sender, New CancelEventArgs)
             MenuText.Show(New Point(Me.Left + sender.left + sender.width, Me.Top + sender.top))
+        ElseIf e.KeyCode = Keys.Enter And CurrentLine < 6 Then
+            If sender.selectionlength > 0 Then
+                sender.selectionstart += sender.selectionlength
+                sender.selectionlength = 0
+                e.SuppressKeyPress = True
+            ElseIf CurrentLine < 6 Then
+                e.SuppressKeyPress = True
+                Lines(CurrentLine + 1).Focus()
+            End If
+        ElseIf e.KeyCode = Keys.Enter And CurrentLine = 6 Then
+            Lines(0).Focus()
+            e.SuppressKeyPress = True
+        ElseIf e.KeyCode = Keys.Escape Then
+            If sender.selectionlength > 0 Then
+                sender.selectionlength = 0
+                e.SuppressKeyPress = True
+            ElseIf CurrentLine < 6 Then
+                e.SuppressKeyPress = True
+                Lines(0).Focus()
+            Else
+                e.SuppressKeyPress = True
+            End If
         End If
     End Sub
 
@@ -1019,7 +1048,7 @@ The file will not be saved until you save and the original can be recovered by R
 
     Private Sub MenuMain_Search_Click(sender As Object, e As EventArgs) Handles MenuMain_Search.Click
         Dim cautions As New Dictionary(Of Integer, String())
-        Dim ix As String = InputBox("Enter search phrase:", "Macro Editor", Contents.SelectedItem)
+        Dim ix As String = InputBox("Enter search phrase:", "Macro Editor")
         If ix.Length > 0 Then
             Dim ixl As String = ix.ToLower()
             For b = 0 To debuglimit
