@@ -89,10 +89,10 @@ Public Class MainForm
                     Ctrls(9).PerformClick()
                 End If
                 e.SuppressKeyPress = True
-            ElseIf e.Shift And e.keycode = Keys.Tab Then
+            ElseIf e.Shift And (e.keycode = Keys.Tab OrElse e.KeyCode = Keys.Enter) Then
                 Ctrls(Math.Max(0, xMacro - 1)).PerformClick()
                 e.SuppressKeyPress = True
-            ElseIf e.KeyCode = Keys.Tab Then
+            ElseIf e.KeyCode = Keys.Tab OrElse e.KeyCode = Keys.enter Then
                 Ctrls(Math.Min(19, xMacro + 1)).PerformClick()
                 e.SuppressKeyPress = True
             End If
@@ -573,15 +573,19 @@ Public Class MainForm
             x = (sender.GetCurrentParent()).SourceControl.tag
         End If
         Dim c As String() = CleanClipBoard().Split(Chr(10))
-        If verifyclipboard("Macro", c) = False Then
-            Exit Sub
-        End If
-        c = c.Skip(1).ToArray()
-        Array.Resize(c, c.Length - 1)
-        If c.Length = 7 Then
+        If c(0).StartsWith("Type: Macro") Then
+            MacroContainer(xBook, xRow, x) = {"", "", "", "", "", "", ""}
+            For i = 1 To Math.Min(c.Length - 2, 7)
+                MacroContainer(xBook, xRow, x)(i - 1) = c(i)
+            Next
+        ElseIf c(0).StartsWith("Type: ") Then
+            MsgBox("Clipboard data contains " & c(0) & ", canceling paste to this macro.")
+        ElseIf c.Length = 7 Then
+            MenuMacro_Clear.PerformClick()
             MacroContainer(xBook, xRow, x) = c
             SomethingEdited = True
         ElseIf c.Length < 7 Then
+            MenuMacro_Clear.PerformClick()
             Dim p As Integer = MessageBox.Show("Is the first line the title?", "Macro Editor", MessageBoxButtons.YesNo)
             If p = DialogResult.Yes Then
                 MacroContainer(xBook, xRow, x) = {"", "", "", "", "", "", ""}
@@ -596,8 +600,6 @@ Public Class MainForm
                 Next
             End If
             SomethingEdited = True
-        Else
-            MsgBox("Too many lines to paste. 7 lines maximum.")
         End If
         Rows(xRow).PerformClick()
     End Sub
@@ -1087,1804 +1089,812 @@ Row, Macro:
 Home
 /macro set 1
 
-
-
-
-
-
 Macro:
 Blizzaja
 /ma ""Blizzaja"" <stnpc>
-
-
-
-
-
 
 Macro:
 Firaja
 /ma ""Firaja"" <stnpc>
 
-
-
-
-
-
 Macro:
 Waterja
 /ma ""Waterja"" <stnpc>
-
-
-
-
-
 
 Macro:
 Thundaja
 /ma ""Thundaja"" <stnpc>
 
-
-
-
-
-
 Macro:
 Stoneja
 /ma ""Stoneja"" <stnpc>
-
-
-
-
-
 
 Macro:
 Aeroja
 /ma ""Aeroja"" <stnpc>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
-
+CCs
+/macro set 7
 
 Macro:
 Breakga
 /ma ""Breakga"" <stnpc>
 
-
-
-
-
-
 Macro:
 Sleepga2
 /ma ""Sleepga II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Cure IV
 /ma ""Cure IV"" <stal>
 
-
-
-
-
-
 Macro:
 Cure III
 /ma ""Cure III"" <stal>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
 
 
 Macro:
 Aquaveil
 /ma ""Aquaveil"" <me>
 
-
-
-
-
-
 Macro:
 Blink
 /ma ""Blink"" <me>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
 
 
 Macro:
 Refresh
 /ma ""Refresh"" <stpt>
 
-
-
-
-
-
 Macro:
 Haste
 /ma ""Haste"" <stal>
 
-
-
-
-
-
 Macro:
-Aspir
-/ma ""Aspir"" <stnpc>
-
-
-
-
-
+Aspirs
+/ma ""Aspir III"" <stnpc>
+/ma ""Aspir II"" <lastst>
+/ma ""Aspir"" <lastst>
 
 Macro:
 Stun
 /ma ""Stun"" <stnpc>
 
-
-
-
-
-
 Row, Macro:
 Home
 /macro set 1
-
-
-
-
-
 
 Macro:
 Blizard6
 /ma ""Blizzard VI"" <stnpc>
 
-
-
-
-
-
 Macro:
 Fire6
 /ma ""Fire VI"" <stnpc>
-
-
-
-
-
 
 Macro:
 Water6
 /ma ""Water VI"" <stnpc>
 
-
-
-
-
-
 Macro:
 Thunder6
 /ma ""Thunder VI"" <stnpc>
-
-
-
-
-
 
 Macro:
 Stone6
 /ma ""Stone VI"" <stnpc>
 
-
-
-
-
-
 Macro:
 Aero6
 /ma ""Aero VI"" <stnpc>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
-
+CCs
+/macro set 7
 
 Macro:
 Breakga
 /ma ""Breakga"" <stnpc>
 
-
-
-
-
-
 Macro:
 Sleepga2
 /ma ""Sleepga II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Cure IV
 /ma ""Cure IV"" <stal>
 
-
-
-
-
-
 Macro:
 Cure III
 /ma ""Cure III"" <stal>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
 
 
 Macro:
 Aquaveil
 /ma ""Aquaveil"" <me>
 
-
-
-
-
-
 Macro:
 Blink
 /ma ""Blink"" <me>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
 
 
 Macro:
 Refresh
 /ma ""Refresh"" <stpt>
 
-
-
-
-
-
 Macro:
 Haste
 /ma ""Haste"" <stal>
 
-
-
-
-
-
 Macro:
-Aspir
+Aspirs
 /ma ""Aspir III"" <stnpc>
 /ma ""Aspir II"" <lastst>
 /ma ""Aspir"" <lastst>
-
-
-
 
 Macro:
 Stun
 /ma ""Stun"" <stnpc>
 
-
-
-
-
-
 Row, Macro:
 Home
 /macro set 1
-
-
-
-
-
 
 Macro:
 Blizard5
 /ma ""Blizzard V"" <stnpc>
 
-
-
-
-
-
 Macro:
 Fire5
 /ma ""Fire V"" <stnpc>
-
-
-
-
-
 
 Macro:
 Water5
 /ma ""Water V"" <stnpc>
 
-
-
-
-
-
 Macro:
 Thunder5
 /ma ""Thunder V"" <stnpc>
-
-
-
-
-
 
 Macro:
 Stone5
 /ma ""Stone V"" <stnpc>
 
-
-
-
-
-
 Macro:
 Aero5
 /ma ""Aero V"" <stnpc>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
-
+CCs
+/macro set 7
 
 Macro:
 Breakga
 /ma ""Breakga"" <stnpc>
 
-
-
-
-
-
 Macro:
 Sleepga2
 /ma ""Sleepga II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Cure IV
 /ma ""Cure IV"" <stal>
 
-
-
-
-
-
 Macro:
 Cure III
 /ma ""Cure III"" <stal>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
 
 
 Macro:
 Aquaveil
 /ma ""Aquaveil"" <me>
 
-
-
-
-
-
 Macro:
 Blink
 /ma ""Blink"" <me>
-
-
-
-
-
 
 Macro:
 Stoneski
 /ma ""Stoneskin"" <me>
 
-
-
-
-
-
 Macro:
 Refresh
 /ma ""Refresh"" <stpt>
-
-
-
-
-
 
 Macro:
 Haste
 /ma ""Haste"" <stal>
 
-
-
-
-
-
 Macro:
-Aspir
+Aspirs
 /ma ""Aspir III"" <stnpc>
 /ma ""Aspir II"" <lastst>
 /ma ""Aspir"" <lastst>
-
-
-
 
 Macro:
 Stun
 /ma ""Stun"" <stnpc>
 
-
-
-
-
-
 Row, Macro:
 Home
 /macro set 1
-
-
-
-
-
 
 Macro:
 Blizard4
 /ma ""Blizzard IV"" <stnpc>
 
-
-
-
-
-
 Macro:
 Fire4
 /ma ""Fire IV"" <stnpc>
-
-
-
-
-
 
 Macro:
 Water4
 /ma ""Water IV"" <stnpc>
 
-
-
-
-
-
 Macro:
 Thunder4
 /ma ""Thunder IV"" <stnpc>
-
-
-
-
-
 
 Macro:
 Stone4
 /ma ""Stone IV"" <stnpc>
 
-
-
-
-
-
 Macro:
 Aero4
 /ma ""Aero IV"" <stnpc>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
-
+CCs
+/macro set 7
 
 Macro:
 Breakga
 /ma ""Breakga"" <stnpc>
 
-
-
-
-
-
 Macro:
 Sleepga2
 /ma ""Sleepga II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Cure IV
 /ma ""Cure IV"" <stal>
 
-
-
-
-
-
 Macro:
 Cure III
 /ma ""Cure III"" <stal>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
 
 
 Macro:
 Aquaveil
 /ma ""Aquaveil"" <me>
 
-
-
-
-
-
 Macro:
 Blink
 /ma ""Blink"" <me>
-
-
-
-
-
 
 Macro:
 Stoneski
 /ma ""Stoneskin"" <me>
 
-
-
-
-
-
 Macro:
 Refresh
 /ma ""Refresh"" <stpt>
-
-
-
-
-
 
 Macro:
 Haste
 /ma ""Haste"" <stal>
 
-
-
-
-
-
 Macro:
-Aspir
+Aspirs
 /ma ""Aspir III"" <stnpc>
 /ma ""Aspir II"" <lastst>
 /ma ""Aspir"" <lastst>
-
-
-
 
 Macro:
 Stun
 /ma ""Stun"" <stnpc>
 
-
-
-
-
-
 Row, Macro:
 Home
 /macro set 1
-
-
-
-
-
 
 Macro:
 Blizard3
 /ma ""Blizzard III"" <stnpc>
 
-
-
-
-
-
 Macro:
 Fire3
 /ma ""Fire III"" <stnpc>
-
-
-
-
-
 
 Macro:
 Water3
 /ma ""Water III"" <stnpc>
 
-
-
-
-
-
 Macro:
 Thunder3
 /ma ""Thunder III"" <stnpc>
-
-
-
-
-
 
 Macro:
 Stone 3
 /ma ""Stone III"" <stnpc>
 
-
-
-
-
-
 Macro:
 Aero3
 /ma ""Aero III"" <stnpc>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
-
+CCs
+/macro set 7
 
 Macro:
 Breakga
 /ma ""Breakga"" <stnpc>
 
-
-
-
-
-
 Macro:
 Sleepga2
 /ma ""Sleepga II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Cure IV
 /ma ""Cure IV"" <stal>
 
-
-
-
-
-
 Macro:
 Cure III
 /ma ""Cure III"" <stal>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
 
 
 Macro:
 Aquaveil
 /ma ""Aquaveil"" <me>
 
-
-
-
-
-
 Macro:
 Blink
 /ma ""Blink"" <me>
-
-
-
-
-
 
 Macro:
 Stoneski
 /ma ""Stoneskin"" <me>
 
-
-
-
-
-
 Macro:
 Refresh
 /ma ""Refresh"" <stpt>
-
-
-
-
-
 
 Macro:
 Haste
 /ma ""Haste"" <stal>
 
-
-
-
-
-
 Macro:
-Aspir
+Aspirs
 /ma ""Aspir III"" <stnpc>
 /ma ""Aspir II"" <lastst>
 /ma ""Aspir"" <lastst>
-
-
-
 
 Macro:
 Stun
 /ma ""Stun"" <stnpc>
 
-
-
-
-
-
 Row, Macro:
 Home
 /macro set 1
-
-
-
-
-
 
 Macro:
 Bliz2
 /ma ""Blizzard II"" <stnpc>
 
-
-
-
-
-
 Macro:
 Fire2
 /ma ""Fire II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Water2
 /ma ""Water II"" <stnpc>
 
-
-
-
-
-
 Macro:
 Thun2
 /ma ""Thunder II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Stone2
 /ma ""Stone II"" <stnpc>
 
-
-
-
-
-
 Macro:
 Aero2
 /ma ""Aero II"" <stnpc>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
-
+CCs
+/macro set 7
 
 Macro:
 Breakga
 /ma ""Breakga"" <stnpc>
 
-
-
-
-
-
 Macro:
 Sleepga2
 /ma ""Sleepga II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Cure IV
 /ma ""Cure IV"" <stal>
 
-
-
-
-
-
 Macro:
 Cure III
 /ma ""Cure III"" <stal>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
 
 
 Macro:
 Aquaveil
 /ma ""Aquaveil"" <me>
 
-
-
-
-
-
 Macro:
 Blink
 /ma ""Blink"" <me>
-
-
-
-
-
 
 Macro:
 Stoneski
 /ma ""Stoneskin"" <me>
 
-
-
-
-
-
 Macro:
 Refresh
 /ma ""Refresh"" <stpt>
-
-
-
-
-
 
 Macro:
 Haste
 /ma ""Haste"" <stal>
 
-
-
-
-
-
 Macro:
-Aspir
+Aspirs
 /ma ""Aspir III"" <stnpc>
 /ma ""Aspir II"" <lastst>
 /ma ""Aspir"" <lastst>
-
-
-
 
 Macro:
 Stun
 /ma ""Stun"" <stnpc>
 
-
-
-
-
-
 Row, Macro:
-
-
-
-
-
-
-
+Home
+/macro set 1
 
 Macro:
-
-
-
-
-
-
-
+Sleep2
+/ma ""Sleep II"" <stnpc>
 
 Macro:
-
-
-
-
-
-
-
+Break
+/ma ""Break"" <stnpc>
 
 Macro:
-
-
-
-
-
-
-
+Sleep
+/ma ""Sleep"" <stnpc>
 
 Macro:
-
-
-
-
-
-
-
+Gravity
+/ma ""Gravity"" <stnpc>
 
 Macro:
-
-
-
-
-
-
-
+Distract
+/ma ""Distract"" <stnpc>
 
 Macro:
-
-
-
-
-
-
-
+Frazzle
+/ma ""Frazzle"" <stnpc>
 
 Macro:
-
-
-
-
-
-
-
+Sleepga
+/ma ""Sleepga"" <stnpc>
 
 Macro:
-
-
-
-
-
-
-
+Breakga
+/ma ""Breakga"" <stnpc>
 
 Macro:
 Sleepga2
 /ma ""Sleepga II"" <stnpc>
 
+Macro:
+Cure IV
+/ma ""Cure IV"" <stal>
 
-
-
-
+Macro:
+Cure III
+/ma ""Cure III"" <stal>
 
 Macro:
 
 
-
-
-
-
-
+Macro:
+Aquaveil
+/ma ""Aquaveil"" <me>
 
 Macro:
-
-
-
-
-
-
-
+Blink
+/ma ""Blink"" <me>
 
 Macro:
-
-
-
-
-
-
-
+Stoneski
+/ma ""Stoneskin"" <me>
 
 Macro:
-
-
-
-
-
-
-
+Refresh
+/ma ""Refresh"" <stpt>
 
 Macro:
-
-
-
-
-
-
-
+Haste
+/ma ""Haste"" <stal>
 
 Macro:
-
-
-
-
-
-
-
+Aspirs
+/ma ""Aspir III"" <stnpc>
+/ma ""Aspir II"" <lastst>
+/ma ""Aspir"" <lastst>
 
 Macro:
-
-
-
-
-
-
-
-
-Macro:
-
-
-
-
-
-
-
-
-Macro:
-
-
-
-
-
-
-
-
-Macro:
-
-
-
-
-
-
-
+Stun
+/ma ""Stun"" <stnpc>
 
 Row, Macro:
 Home
 /macro set 1
 
-
-
-
-
-
 Macro:
-Blizzaga
-/ma ""Blizzaga"" <stnpc>
-
-
-
-
-
+Sleep2
+/ma ""Sleep II"" <stnpc>
 
 Macro:
 Firaga
 /ma ""Firaga"" <stnpc>
 
-
-
-
-
-
 Macro:
 Waterga
 /ma ""Waterga"" <stnpc>
 
-
-
-
-
-
 Macro:
-Thundaga
-/ma ""Thundaga"" <stnpc>
-
-
-
-
-
+Gravity
+/ma ""Gravity"" <stnpc>
 
 Macro:
 Stonega
 /ma ""Stonega"" <stnpc>
 
-
-
-
-
-
 Macro:
 Aeroga
 /ma ""Aeroga"" <stnpc>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
-
+CCs
+/macro set 7
 
 Macro:
 Breakga
 /ma ""Breakga"" <stnpc>
 
-
-
-
-
-
 Macro:
 Sleepga2
 /ma ""Sleepga II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Cure IV
 /ma ""Cure IV"" <stal>
 
-
-
-
-
-
 Macro:
 Cure III
 /ma ""Cure III"" <stal>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
 
 
 Macro:
 Aquaveil
 /ma ""Aquaveil"" <me>
 
-
-
-
-
-
 Macro:
 Blink
 /ma ""Blink"" <me>
-
-
-
-
-
 
 Macro:
 Stoneski
 /ma ""Stoneskin"" <me>
 
-
-
-
-
-
 Macro:
 Refresh
 /ma ""Refresh"" <stpt>
-
-
-
-
-
 
 Macro:
 Haste
 /ma ""Haste"" <stal>
 
-
-
-
-
-
 Macro:
-Aspir
+Aspirs
 /ma ""Aspir III"" <stnpc>
 /ma ""Aspir II"" <lastst>
 /ma ""Aspir"" <lastst>
-
-
-
 
 Macro:
 Stun
 /ma ""Stun"" <stnpc>
 
-
-
-
-
-
 Row, Macro:
 Home
 /macro set 1
-
-
-
-
-
 
 Macro:
 Blizzag
 /ma ""Blizzaga II"" <stnpc>
 
-
-
-
-
-
 Macro:
 Firaga2
 /ma ""Firaga II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Waterga2
 /ma ""Waterga II"" <stnpc>
 
-
-
-
-
-
 Macro:
 Thundag2
 /ma ""Thundaga II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Stonega2
 /ma ""Stonega II"" <stnpc>
 
-
-
-
-
-
 Macro:
 Aeroga2
 /ma ""Aeroga II"" <stnpc>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
-
+CCs
+/macro set 7
 
 Macro:
 Breakga
 /ma ""Breakga"" <stnpc>
 
-
-
-
-
-
 Macro:
 Sleepga2
 /ma ""Sleepga II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Cure IV
 /ma ""Cure IV"" <stal>
 
-
-
-
-
-
 Macro:
 Cure III
 /ma ""Cure III"" <stal>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
 
 
 Macro:
 Aquaveil
 /ma ""Aquaveil"" <me>
 
-
-
-
-
-
 Macro:
 Blink
 /ma ""Blink"" <me>
-
-
-
-
-
 
 Macro:
 Stoneski
 /ma ""Stoneskin"" <me>
 
-
-
-
-
-
 Macro:
 Refresh
 /ma ""Refresh"" <stpt>
-
-
-
-
-
 
 Macro:
 Haste
 /ma ""Haste"" <stal>
 
-
-
-
-
-
 Macro:
-Aspir
+Aspirs
 /ma ""Aspir III"" <stnpc>
 /ma ""Aspir II"" <lastst>
 /ma ""Aspir"" <lastst>
 
-
-
-
 Macro:
 Stun
 /ma ""Stun"" <stnpc>
-
-
-
-
-
 
 Row, Macro:
 Home
 /macro set 1
 
-
-
-
-
-
 Macro:
-Blizzaga
+Blizzag3
 /ma ""Blizzaga III"" <stnpc>
 
-
-
-
-
-
 Macro:
-Firaga
+Firaga3
 /ma ""Firaga III"" <stnpc>
 
-
-
-
-
-
 Macro:
-Waterga
+Waterga3
 /ma ""Waterga III"" <stnpc>
 
-
-
-
-
-
 Macro:
-Thundaga
+Thundag3
 /ma ""Thundaga III"" <stnpc>
 
-
-
-
-
-
 Macro:
-Stonega
+Stonega3
 /ma ""Stonega III"" <stnpc>
 
-
-
-
-
-
 Macro:
-Aeroga
+Aeroga3
 /ma ""Aeroga III"" <stnpc>
 
-
-
-
-
+Macro:
+CCs
+/macro set 7
 
 Macro:
-
-
-
-
-
-
-
+Breakga
+/ma ""Breakga"" <stnpc>
 
 Macro:
 Sleepga2
 /ma ""Sleepga II"" <stnpc>
-
-
-
-
-
-
-Macro:
-Sleepga2
-/ma ""Sleepga II"" <stnpc>
-
-
-
-
-
 
 Macro:
 Cure IV
 /ma ""Cure IV"" <stal>
 
-
-
-
-
-
 Macro:
 Cure III
 /ma ""Cure III"" <stal>
 
-
-
-
-
-
 Macro:
-
-
-
-
-
-
 
 
 Macro:
 Aquaveil
 /ma ""Aquaveil"" <me>
 
-
-
-
-
-
 Macro:
 Blink
 /ma ""Blink"" <me>
-
-
-
-
-
 
 Macro:
 Stoneski
 /ma ""Stoneskin"" <me>
 
-
-
-
-
-
 Macro:
 Refresh
 /ma ""Refresh"" <stpt>
-
-
-
-
-
 
 Macro:
 Haste
 /ma ""Haste"" <stal>
 
-
-
-
-
-
 Macro:
-Aspir
+Aspirs
 /ma ""Aspir III"" <stnpc>
 /ma ""Aspir II"" <lastst>
 /ma ""Aspir"" <lastst>
-
-
-
 
 Macro:
 Stun
 /ma ""Stun"" <stnpc>
 
-
-
-
-
-
 Row, Macro:
-EndBook"
+EndBook (Please do not remove empty lines as they're part of the sharing format). If you experience problems pasting, please make sure to download an up to date version."
         Dim lf As New Regex("(\r\n|\r|\n)")
         MenuBook_PasteClipboard_Click(sender, e, lf.Replace(clp, Chr(10)))
     End Sub
